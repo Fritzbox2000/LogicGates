@@ -17,6 +17,9 @@ class gate(object):
     self.x = x
     self.y = y
 
+  def getpos(self):
+    return(self.x,self.y)
+
   def drawBox(self,pygame,screen,colour):
     pygame.draw.rect(screen,colour,(self.x,self.y,self.width,self.height),0)
 
@@ -41,9 +44,6 @@ class andGate(gate):
       self.out = True
     else:
       self.out = False
-
-  def getpos(self):
-    return(self.x,self.y)
 
   def checkInOutSelected(self,math,givenX,givenY):
     z = complex(givenX,givenY)
@@ -80,9 +80,6 @@ class orGate(gate):
     else:
       self.out = False
 
-  def getpos(self):
-    return(self.x,self.y)
-
   def checkInOutSelected(self,math,givenX,givenY):
     z = complex(givenX,givenY)
     #for the output
@@ -117,9 +114,6 @@ class notGate(gate):
       self.out = False
     else:
       self.out = True
-
-  def getpos(self):
-    return(self.x,self.y)
 
   def checkInOutSelected(self,math,givenX,givenY):
     z = complex(givenX,givenY)
