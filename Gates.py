@@ -35,7 +35,7 @@ class andGate(gate):
     self.in1 = in1
     self.in2 = in2
     self.out = out
-          
+
   def output(self):
     if self.in1 == True and self.in2 == True:
       self.out = True
@@ -50,25 +50,21 @@ class andGate(gate):
     #for the output
     center = complex(self.x+self.width, int(self.y+self.height/2))
     if abs(z-center) < self.nodesize:
-      return('Output')
+      return("Output")
     #for inputs
-    #1
     center = complex(self.x,self.y+self.nodesize)
     if abs(z-center) < self.nodesize:
       return("Inp1")
     #2
-    center = complex(self.x,self.y+self.length-self.nodesize)
+    center = complex(self.x,self.y+self.height-self.nodesize)
     if abs(z-center) < self.nodesize:
       return("Inp2")
-    return("")
 
   def drawGate(self,pygame,screen):
-    colour = (111,184,66)
-    colour2 = (86,138,54)
+    colour = (169,209,142)
+    colour2 = (84,130,53)
     self.drawBox(pygame,screen,colour)
     self.drawCircleConfig1(pygame,screen,colour2)
-    
-    
 
 class orGate(gate):
 
@@ -92,21 +88,20 @@ class orGate(gate):
     #for the output
     center = complex(self.x+self.width, int(self.y+self.height/2))
     if abs(z-center) < self.nodesize:
-      return('Output')
+      return("Output")
     #for inputs
     #1
     center = complex(self.x,self.y+self.nodesize)
     if abs(z-center) < self.nodesize:
       return("Inp1")
     #2
-    center = complex(self.x,self.y+self.length-self.nodesize)
+    center = complex(self.x,self.y+self.height-self.nodesize)
     if abs(z-center) < self.nodesize:
       return("Inp2")
-    return("")
 
   def drawGate(self,pygame,screen):
-    colour = (111,184,66)
-    colour2 = (86,138,54)
+    colour = (157,195,230)
+    colour2 = (46,117,182)
     self.drawBox(pygame,screen,colour)
     self.drawCircleConfig1(pygame,screen,colour2)
 
@@ -131,16 +126,15 @@ class notGate(gate):
     #for the output
     center = complex(self.x+self.width,int(self.y+self.height/2))
     if abs(z-center) < self.nodesize:
-      return('Output')
+      return("Output")
     #for inputs
     #1
     center = complex(self.x,int(self.y+self.height/2))
     if abs(z-center) < self.nodesize:
       return("Inp1")
-    return("")
-  
+
   def drawGate(self,pygame,screen):
-    colour = (111,184,66)
-    colour2 = (86,138,54)
+    colour = (255,217,102)
+    colour2 = (191,144,0)
     self.drawBox(pygame,screen,colour)
     self.drawCircleConfig2(pygame,screen,colour2)
