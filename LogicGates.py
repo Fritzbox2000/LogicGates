@@ -17,13 +17,18 @@ def updateWindow(pygame,screen,allGates,connector,initialPos = '', pos = ''):
   for each in allGates:
     each[1].drawGate(pygame,screen)
   for each in connector:
-    pygame.draw.line(screen,(255,255,255),each[4],each[5],10)
-  if initialPos != '' or pos != '':
-    pygame.draw.line(screen,(255,255,255),initialPos,pos,10)
+    if each[2] == False:
+      pygame.draw.line(screen,(255,255,255),each[4],each[5],10)
+    if each[2] == True:
+      pygame.draw.line(screen,(255,0,0),each[4],each[5],10)
+    if initialPos != '' or pos != '':
+      pygame.draw.line(screen,(255,255,255),initialPos,pos,10)
   pygame.display.flip()
   pass
 
-def checkqueue():
+def checkqueue(connector,allGates):
+  for index,each in enumerate(connector,start =0):
+    connector[index][2] = allGates[3].output()
   pass
 
 #[][][][][][][][][]End Pygame[][][][][][][][][]
@@ -53,11 +58,19 @@ def checkAllWiring(pygame,math,screen,allGates,pos,connector):
           newInOut = each[1].checkInOutSelected(math,pos[0],pos[1])
           if newInOut is not None:
             if 'Inp' in newInOut and 'Out' in inOut:
-              connector.append([generalDic['ConnectorIndex'],0,index2,index,initialPos,pos])
+              connector.append([generalDic['ConnectorIndex'],False,index,index2,initialPos,pos])
+              if newInOut == 'Inp1':
+                allGates[index2].in1 = generalDic['ConnectorIndex']
+              if newInOut == 'Inp2':
+                allGates[index2].in2 = generalDic['ConnectorIndex']
               generalDic['ConnectorIndex']+=1
               finished = True
             if 'Out' in newInOut and 'Inp' in inOut:
-              connector.append([generalDic['ConnectorIndex'],0,index,index2,initialPos,pos])
+              connector.append([generalDic['ConnectorIndex'],False,index2,index,initialPos,pos])
+              if inOut == 'Inp1':
+                allGates[index].in1 = generalDic['ConnectorIndex']
+              if inOut == 'Inp2':
+                allGates[index].in2 = generalDic['ConnectorIndex']
               generalDic['ConnectorIndex']+=1
               finished = True
   return(connector)

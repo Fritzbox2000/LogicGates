@@ -39,8 +39,10 @@ class andGate(gate):
     self.in2 = in2
     self.out = out
 
-  def output(self):
-    if self.in1 == True and self.in2 == True:
+  def output(self,connector):
+    inp1 = connector[self.in1][2]
+    inp2 = connector[self.in2][2]
+    if inp1 == True and inp2 == True:
       self.out = True
     else:
       self.out = False
@@ -74,8 +76,10 @@ class orGate(gate):
     self.in2 = in2
     self.out = out
 
-  def output(self):
-    if self.in1 == True or self.in2 == True:
+  def output(self,connector):
+    inp1 = connector[self.in1][2]
+    inp2 = connector[self.in2][2]
+    if inp1 == True or inp2 == True:
       self.out = True
     else:
       self.out = False
@@ -109,8 +113,9 @@ class notGate(gate):
     self.in1 = in1
     self.out = out
 
-  def output(self):
-    if self.in1 == True:
+  def output(self,connector):
+    inp1 = connector[self.in1][2]
+    if inp1 == True:
       self.out = False
     else:
       self.out = True
